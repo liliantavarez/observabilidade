@@ -1,4 +1,18 @@
-# **Observabilidade e monitoramento**
+## Formação SRE: Site Reliability Engineering (Engenharia de confiabilidade de Sites)
+
+Nesta formação você vai aprender o que é Site Reliability Engineering, ou Engenharia de confiabilidade de Sites, e como usar observabilidade e monitoramento para administrar sistemas e manter sistemas críticos funcionando.
+
+1. **Observabilidade e Monitoramento**
+   - [**Código no Repositório**](https://github.com/liliantavarez/observabilidade/tree/develop/prometheus-grafana)
+
+2. **Confiabilidade**
+   - [**Código no Repositório**](https://github.com/liliantavarez/observabilidade/tree/develop/prometheus-grafana)
+
+3. **Rastreamento de Dados**
+   - [**Código no Repositório**](https://github.com/liliantavarez/observabilidade/tree/develop/ambiente-tracing)
+
+
+### **Observabilidade e monitoramento**
 
 **Introdução**
 
