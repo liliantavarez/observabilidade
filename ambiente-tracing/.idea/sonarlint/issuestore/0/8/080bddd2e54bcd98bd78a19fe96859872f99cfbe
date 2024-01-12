@@ -1,0 +1,7 @@
+
+€
+java:S1104"eMake LOCAL_DATETIME_SERIALIZER a static final constant or non-public and provide accessors if needed.(Ÿ©ÌÜúÿÿÿÿ
+Z
+java:S1444"?Make this "public static LOCAL_DATETIME_SERIALIZER" field final(Ÿ©ÌÜúÿÿÿÿ
+
+java:S3008"dRename this field "LOCAL_DATETIME_SERIALIZER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ©ÌÜúÿÿÿÿ

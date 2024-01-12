@@ -1,0 +1,109 @@
+HELP.md
+logs/HELP.md
+logs/!.mvn/wrlogser/maven-wrlogser.jar
+logs/!**/src/main/**/target/
+logs/!**/src/test/**/target/
+
+# STS 
+logs/.apt_generated
+logs/.factorypath
+logs/.settings
+logs/.springBeans
+logs/.sts4-cache
+
+# IntelliJ IDEA
+logs/.idea
+logs/*.iws
+logs/*.iml
+logs/*.ipr
+
+# NetBeans 
+logs/nbproject/private/
+logs/nbbuild/
+logs/dist/
+logs/nbdist/
+logs/.nb-gradle/
+logs/build/
+logs/!**/src/main/**/build/
+logs/!**/src/test/**/build/
+
+# VS Code
+.vscode/
+logs/.vscode/
+logs/*target*
+logs/*.jar
+logs/*.war
+logs/*.ear
+logs/*.class
+*.zip
+*.tar.gz
+
+# eclipse specific git ignore
+logs/*.pydevproject
+logs/.project
+logs/.metadata
+logs/bin/**
+logs/tmp/**
+logs/tmp/**/*
+logs/*.tmp
+logs/*.bak
+logs/*.swp
+logs/*~.nib
+logs/local.properties
+logs/.classpath
+logs/.settings/
+logs/.loadpath
+logs/logs
+
+# External tool builders
+logs/.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+logs/*.launch
+
+# CDT-specific (C/C++ Development Tooling)
+logs/.cproject
+
+# CDT- autotools
+logs/.autotools
+
+# Java annotation processor (APT)
+logs/.factorypath
+
+# PDT-specific (PHP Development Tools)
+logs/.buildpath
+
+# Tern plugin
+logs/.tern-project
+
+# TeXlipse plugin
+logs/.texlipse
+
+# STS (Spring Tool Suite)
+logs/.springBeans
+
+# Code Recommenders
+logs/.recommenders/
+
+# Annotation Processing
+logs/.apt_generated/
+logs/.apt_generated_test/
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+logs/.cache-main
+logs/.scala_dependencies
+logs/.worksheet
+
+# Uncomment this line if you wish to ignore the project description file.
+# Typically, this file would be tracked if it contains build/dependency configurations:
+#.project
+
+# Docker containers data
+grafana/**
+grafana/**/*
+postgres/data
+postgres/data/**
+postgres/data/**/*
+prometheus/prometheus_data
+prometheus/prometheus_data/**
+prometheus/prometheus_data/**/*
