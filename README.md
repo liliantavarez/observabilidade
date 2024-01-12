@@ -1,4 +1,4 @@
-## Formação SRE: Site Reliability Engineering (Engenharia de confiabilidade de Sites)
+# Formação SRE: Site Reliability Engineering (Engenharia de confiabilidade de Sites)
 
 Nesta formação você vai aprender o que é Site Reliability Engineering, ou Engenharia de confiabilidade de Sites, e como usar observabilidade e monitoramento para administrar sistemas e manter sistemas críticos funcionando.
 
