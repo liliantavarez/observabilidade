@@ -1,4 +1,14 @@
-# **Observabilidade e monitoramento**
+1. **Observabilidade e Monitoramento**
+   - [**Código no Repositório (Em andamento)**](https://github.com/liliantavarez/observabilidade/tree/develop/prometheus-grafana)
+
+2. **Confiabilidade**
+   - [**Código no Repositório (Em andamento)**]()
+
+3. **Rastreamento de Dados**
+   - [**Código no Repositório (Em andamento)**](https://github.com/liliantavarez/observabilidade/tree/develop/ambiente-tracing)
+
+
+### **Observabilidade e monitoramento**
 
 **Introdução**
 
