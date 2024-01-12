@@ -38,11 +38,24 @@ Os traces são uma forma de coletar dados que rastreiam a execução de uma soli
 
 Os traces fornecem uma visão holística do comportamento de um sistema, permitindo identificar problemas de desempenho, escalabilidade e confiabilidade.
 
+**OpenTelemetry**
+
+OpenTelemetry é um conjunto de APIs, bibliotecas, agentes e instrumentações que permitem a observabilidade em sistemas distribuídos. 
+
+Ele fornece meios para coletar dados de telemetria, como traces (rastreamentos), métricas e logs, em ambientes distribuídos, como microsserviços e arquiteturas baseadas em contêineres.
+
+
 **Contexto de trace com OpenTelemetry**
 
-O OpenTelemetry é uma iniciativa de código aberto que fornece um conjunto de ferramentas e bibliotecas para coletar e exportar dados de observability.
+O contexto de trace em OpenTelemetry refere-se à capacidade de rastrear a execução de uma solicitação ou transação em vários serviços e componentes. 
 
-O OpenTelemetry suporta a coleta de dados de métricas, logs e traces de diferentes fontes, facilitando a implementação de uma estratégia de observabilidade completa.
+É composto por informações de rastreamento que são propagadas através de diferentes partes de um sistema.
+
+* **TraceID e SpanID:** Cada solicitação recebe um identificador de rastreamento exclusivo (TraceID) que é compartilhado por todos os componentes envolvidos na transação. Além disso, cada componente cria um identificador de span exclusivo (SpanID) para sua parte específica da transação.
+* **Contexto Propagation:** O OpenTelemetry garante que o contexto de rastreamento seja propagado entre os diferentes serviços. Isso permite que você siga o fluxo de execução de uma solicitação à medida que atravessa diferentes serviços e microsserviços.
+* **Instrumentação:** Para coletar dados de rastreamento, você precisa instrumentar seus aplicativos. Isso envolve a incorporação de código em seus serviços para capturar informações relevantes, como início e término de operações importantes.
+* **Exportação e Armazenamento:** Os dados de rastreamento coletados são geralmente exportados para sistemas de armazenamento, como Jaeger, Zipkin ou outros backends de observabilidade. Isso permite que você analise os dados e identifique gargalos ou problemas de desempenho.
+* **Integração com outros componentes OpenTelemetry:** Além dos traces, OpenTelemetry também lida com métricas e logs, proporcionando uma visão abrangente da saúde e desempenho do seu sistema distribuído.
 
 **Melhorias práticas sobre aplicação de observabilidade em projetos**
 
