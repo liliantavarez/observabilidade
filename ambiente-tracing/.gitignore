@@ -1,109 +1,60 @@
-HELP.md
-logs/HELP.md
-logs/!.mvn/wrlogser/maven-wrlogser.jar
-logs/!**/src/main/**/target/
-logs/!**/src/test/**/target/
+# IDE
+.idea/
 
-# STS 
-logs/.apt_generated
-logs/.factorypath
-logs/.settings
-logs/.springBeans
-logs/.sts4-cache
+# Compiled class file
+target/
 
-# IntelliJ IDEA
-logs/.idea
-logs/*.iws
-logs/*.iml
-logs/*.ipr
-
-# NetBeans 
-logs/nbproject/private/
-logs/nbbuild/
-logs/dist/
-logs/nbdist/
-logs/.nb-gradle/
-logs/build/
-logs/!**/src/main/**/build/
-logs/!**/src/test/**/build/
-
-# VS Code
-.vscode/
-logs/.vscode/
-logs/*target*
-logs/*.jar
-logs/*.war
-logs/*.ear
-logs/*.class
+# Generated files
+*.class
+*.jar
+*.war
+*.ear
 *.zip
 *.tar.gz
 
-# eclipse specific git ignore
-logs/*.pydevproject
-logs/.project
-logs/.metadata
-logs/bin/**
-logs/tmp/**
-logs/tmp/**/*
-logs/*.tmp
-logs/*.bak
-logs/*.swp
-logs/*~.nib
-logs/local.properties
-logs/.classpath
-logs/.settings/
-logs/.loadpath
-logs/logs
+# Lombok
+.lombok/
 
-# External tool builders
-logs/.externalToolBuilders/
+# Logs
+log/
+*.log
 
-# Locally stored "Eclipse launch configurations"
-logs/*.launch
+# Maven
+mvn/
 
-# CDT-specific (C/C++ Development Tooling)
-logs/.cproject
+# Spring Boot
+spring-boot-starter-parent/
 
-# CDT- autotools
-logs/.autotools
+# IntelliJ
+*.iml
+*.iws
+*.ipr
 
-# Java annotation processor (APT)
-logs/.factorypath
+# Temporary files
+*.tmp
 
-# PDT-specific (PHP Development Tools)
-logs/.buildpath
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
 
-# Tern plugin
-logs/.tern-project
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+*.sqlite3
 
-# TeXlipse plugin
-logs/.texlipse
+# IntelliJ IDEA
+.idea/workspace.xml
+.idea/sonarlint/issuestore/index.pb
+.idea/sonarlint/securityhotspotstore/index.pb
+*.pb
+*.xml
 
-# STS (Spring Tool Suite)
-logs/.springBeans
-
-# Code Recommenders
-logs/.recommenders/
-
-# Annotation Processing
-logs/.apt_generated/
-logs/.apt_generated_test/
-
-# Scala IDE specific (Scala & Java development for Eclipse)
-logs/.cache-main
-logs/.scala_dependencies
-logs/.worksheet
-
-# Uncomment this line if you wish to ignore the project description file.
-# Typically, this file would be tracked if it contains build/dependency configurations:
-#.project
-
-# Docker containers data
-grafana/**
-grafana/**/*
-postgres/data
-postgres/data/**
-postgres/data/**/*
-prometheus/prometheus_data
-prometheus/prometheus_data/**
-prometheus/prometheus_data/**/*
+postgres/
+prometheus/
+grafana/
