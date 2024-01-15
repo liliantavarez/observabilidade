@@ -1,8 +1,5 @@
-# IDE
-.idea/
-
 # Compiled class file
-**/target/
+target/
 
 # Generated files
 *.class
@@ -54,5 +51,3 @@ spring-boot-starter-parent/
 .idea/sonarlint/securityhotspotstore/index.pb
 *.pb
 *.xml
-
-target/
