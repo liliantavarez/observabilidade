@@ -2,6 +2,8 @@ package br.com.alura.forum.controller;
 
 import javax.validation.Valid;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,10 @@ import br.com.alura.forum.controller.form.LoginForm;
 @RequestMapping("/auth")
 @Profile(value = {"prod", "test"})
 public class AutenticacaoController {
-	
+
+	Counter authUserSuccess;
+	Counter authUserErros;
+
 	@Autowired
 	private AuthenticationManager authManager;
 	
@@ -35,13 +40,24 @@ public class AutenticacaoController {
 		
 		try {
 			Authentication authentication = authManager.authenticate(dadosLogin);
-			String token = tokenService.gerarToken(authentication); 		
+			String token = tokenService.gerarToken(authentication);
+			authUserSuccess.increment();
 			return ResponseEntity.ok(new TokenDto(token, "Bearer"));
 			
 		} catch (AuthenticationException e) {
+			authUserErros.increment();
 			return ResponseEntity.badRequest().build();
 		}
+	}
 
-		
+	//Metricas do tipo Counter são incrementais
+	public AutenticacaoController(MeterRegistry meterRegistry){
+		authUserSuccess = Counter.builder("auth_user_success")
+				.description("usuários autenticados")
+				.register(meterRegistry);
+
+		authUserErros = Counter.builder("auth_user_erros")
+				.description("erros de autenticacao")
+				.register(meterRegistry);
 	}
 }
