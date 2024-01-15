@@ -1,6 +1,3 @@
-# Compiled class file
-target/
-
 # Generated files
 *.class
 *.jar
@@ -51,4 +48,14 @@ spring-boot-starter-parent/
 .idea/sonarlint/securityhotspotstore/index.pb
 *.pb
 *.xml
+
 /target/
+/target/classes/
+/target/generated-sources/
+/target/generated-test-sources/
+/target/maven-archiver/
+/target/maven-status/
+/target/surefire-reports/
+/target/test-classes/
+/target/forum.jar
+/target/forum.jar.original
