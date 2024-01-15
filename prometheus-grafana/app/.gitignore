@@ -51,3 +51,4 @@ spring-boot-starter-parent/
 .idea/sonarlint/securityhotspotstore/index.pb
 *.pb
 *.xml
+/target/
