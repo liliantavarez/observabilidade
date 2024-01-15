@@ -147,3 +147,107 @@ Após iniciar a aplicação, acesse o endpoint `/actuator/prometheus` para visua
 Explore as métricas disponíveis para entender melhor o comportamento da sua aplicação. Essas métricas serão utilizadas posteriormente para configurar dashboards e alertas no Prometheus.
 
 Lembre-se de ajustar as configurações conforme necessário para atender às especificidades do seu projeto e ambiente. Para mais detalhes, consulte a documentação do [Micrometer](https://micrometer.io/) e do [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html).
+
+# Criando Métricas Personalizadas
+
+Usaremos o método de autenticação de usuario para criarmos uma métrica personalizada 
+
+## 1. Abra o Controlador de Autenticação
+
+Abra o controlador responsável pela autenticação em sua aplicação. No exemplo, o controlador é `AtenticacaoController.java`.
+
+```java
+
+@RestController
+@RequestMapping("/auth")
+@Profile(value = {"prod", "test"})
+public class AutenticacaoController {
+
+    Counter authUserSuccess;
+    Counter authUserErrors;
+
+    @Autowired
+    private AuthenticationManager authManager;
+
+    public AutenticacaoController(MeterRegistry registry) {
+        authUserSuccess = Counter.builder("auth_user_success")
+            .description("usuários autenticados")
+            .register(registry);
+
+        authUserErrors = Counter.builder("auth_user_error")
+            .description("erros de login")
+            .register(registry);
+    }
+
+    @PostMapping
+    public ResponseEntity<TokenDto> autenticar(@RequestBody @Valid LoginForm form) {
+        try {
+            Authentication authentication = authManager.authenticate(form.converter());
+            authUserSuccess.increment(); // Incrementa o contador de autenticações bem-sucedidas
+            String token = tokenService.gerarToken(authentication);
+            return ResponseEntity.ok(new TokenDto(token, "Bearer"));
+        } catch (AuthenticationException e) {
+            authUserErrors.increment(); // Incrementa o contador de erros de autenticação
+            return ResponseEntity.badRequest().build();
+        }
+    }
+}
+```
+
+## 2. Importe as Dependências
+
+Ao adicionar os contadores, você pode notar erros indicando que `Counter` e `MeterRegistry` não são reconhecidos. Vamos corrigir isso importando as dependências necessárias. No exemplo, estamos utilizando o `io.micrometer.core.instrument`.
+
+```java
+// Importações adicionais
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+```
+
+Certifique-se de importar as classes corretas.
+
+## 3. Build e Execução
+
+Após adicionar os contadores, faça o build e em seguida, inicie a aplicação.
+
+## 4. Teste com o Postman
+
+Abra o Postman e crie uma requisição do tipo POST para `localhost:8080/auth`. Certifique-se de adicionar o token gerado nas requisições subsequentes.
+
+Exemplo de requisição bem-sucedida:
+
+```json
+{
+  "email": "moderador@email.com",
+  "senha": "123456"
+}
+```
+
+Exemplo de requisição com erro:
+
+```json
+{
+  "email": "moderador@email.com",
+  "senha": "1234567"
+}
+```
+
+## 5. Verifique as Métricas no Prometheus
+
+Acesse o endpoint `/actuator/prometheus` (http://localhost:8080/actuator/prometheus) para visualizar as métricas no formato Prometheus.
+
+### Métrica de Usuários Autenticados:
+
+```plaintext
+#TYPE auth_user_success_total counter
+auth_user_success_total{application="app-forum-api"} 0.0
+```
+
+### Métrica de Erros de Autenticação:
+
+```plaintext
+#TYPE auth_user_error_total counter
+auth_user_error_total{application="app-forum-api"} 0.0
+```
+
+Atualize as métricas após realizar as requisições no Postman para ver os contadores aumentando.
