@@ -251,3 +251,94 @@ auth_user_error_total{application="app-forum-api"} 0.0
 ```
 
 Atualize as métricas após realizar as requisições no Postman para ver os contadores aumentando.
+
+#### Métricas no Endpoint `/metrics`
+
+Ao acessar o endpoint `localhost/metrics`, observamos que diversas métricas foram geradas pela nossa aplicação.
+
+#### Componentes Básicos de uma Métrica
+
+1. **Metric Name (Nome da Métrica):**
+   - Exemplo: `logback_event_total`
+   - Identifica a métrica específica que estamos consultando.
+
+2. **Labels (Rótulos):**
+   - Exemplo: `application="app-forum-api", instance="app-forum-api:8080", job="app-forum-api", level="debug"`
+   - Rótulos fornecem informações adicionais para distinguir séries temporais dentro da métrica.
+
+3. **Sample (Amostra):**
+   - Exemplo: `logback_event_total{application="app-forum-api", instance="app-forum-api:8080", job="app-forum-api", level="debug"} 0`
+   - Representa o valor retornado pela consulta para uma métrica específica com rótulos específicos.
+
+#### Entendendo uma Consulta
+
+Ao realizar uma consulta, como `logback_event_total{application="app-forum-api", instance="app-forum-api:8080", job="app-forum-api", level="debug"}`, podemos ajustar os rótulos para filtrar os resultados desejados.
+
+#### Tipos de Dados de uma Métrica no Prometheus
+
+1. **Instant Vector (Vetor Instantâneo):**
+   - Exemplo: `logback_events_total`
+   - Representa um vetor instantâneo de resultados no tempo atual.
+
+2. **Range Vector (Vetor de Série Temporal):**
+   - Exemplo: `logback_events_total[1m]`
+   - Representa um vetor de uma série temporal, mostrando valores ao longo do tempo.
+
+3. **Float (Ponto Flutuante):**
+   - Exemplo: `hikaricp_connections_idle{application="app-forum-api", pool="HikariPool-1"}`
+   - Representa um valor escalar (ponto flutuante).
+
+#### Exemplo Prático
+
+- **Instant Vector:**
+  - `logback_events_total{application="app-forum-api", instance="app-forum-api:8080", job="app-forum-api", level="debug"} 0`
+- **Range Vector:**
+  - `logback_events_total[1m]`
+- **Float:**
+  - `hikaricp_connections_idle{application="app-forum-api", pool="HikariPool-1"}`
+  
+
+## Tipos de Métricas
+
+Ao utilizar o Prometheus, é crucial compreender os quatro tipos principais de métricas com os quais o sistema trabalha. Para obter informações detalhadas, consulte a documentação oficial do Prometheus.
+
+### Counter
+
+A métrica do tipo counter é cumulativa e sempre incrementada. Essa característica a torna adequada para situações em que é essencial rastrear o número total de ocorrências ao longo do tempo. No entanto, é importante observar que, se a aplicação for reinicializada, o valor do counter será resetado para zero. Recomenda-se o uso de métricas counter apenas para valores que aumentam constantemente, como contadores de eventos.
+
+Exemplo:
+```plaintext
+auth_user_success_total{...}
+auth_user_error_total{...}
+```
+
+### Gauge
+
+Ao contrário do counter, o gauge é adequado para métricas que variam durante a execução do sistema. Ele é utilizado para medir valores que podem aumentar e diminuir, como consumo de CPU, consumo de memória e número concorrente de requisições em um período específico.
+
+Exemplo:
+```plaintext
+jvm_threads_states_threads{application="app-forum-api", state="runnable"}
+```
+
+### Histogram
+
+A métrica do tipo histogram está relacionada à duração e tamanho de resposta. Ela é configurada com a alocação de séries temporais em buckets, cada um correspondendo a regras específicas. Isso é útil para avaliar o tempo de resposta da API e cumprir objetivos de nível de serviço (SLO).
+
+Exemplo:
+```plaintext
+http_server_requests_seconds_bucket{status="200", uri="/topicos/{id}", le="0.05"}
+http_server_requests_seconds_sum{status="200", uri="/topicos/{id}"}
+http_server_requests_seconds_count{status="200", uri="/topicos/{id}"}
+```
+
+### Summary
+
+Similar ao histogram, o summary é utilizado para medir a duração e o tamanho da resposta de uma requisição. Ele fornece o somatório de segundos da métrica e a contagem total de eventos captados na métrica.
+
+Exemplo:
+```plaintext
+summary_metric{...}
+```
+
+Entender a distinção entre esses tipos de métricas é crucial para implementar uma monitorização eficaz e obter insights significativos sobre o desempenho do sistema. Certifique-se de escolher o tipo de métrica mais apropriado para cada caso de uso específico.
