@@ -67,9 +67,9 @@ java -jar -Xms128M -Xmx128M -XX:MaxMetaspaceSize=128m -Dspring.profiles.active=p
 
 Após iniciar a aplicação, você pode acessar os endpoints do Spring Boot Actuator para verificar as métricas e informações relevantes.
 
-- **Health Endpoint**: [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health)
-- **Info Endpoint**: [http://localhost:8080/actuator/info](http://localhost:8080/actuator/info)
-- **Metrics Endpoint**: [http://localhost:8080/actuator/metrics](http://localhost:8080/actuator/metrics)
+- **Health Endpoint**: [http://localhost/health](http://localhost/health)
+- **Info Endpoint**: [http://localhost/info](http://localhost/info)
+- **Metrics Endpoint**: [http://localhost/metrics](http://localhost/metrics)
 
 Lembre-se de que esses endpoints podem ser acessados localmente, mas em um ambiente de produção, eles geralmente não devem ser expostos publicamente. Configure adequadamente o acesso a esses endpoints em ambientes de produção.
 
